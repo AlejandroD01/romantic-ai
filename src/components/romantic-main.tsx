@@ -4,7 +4,6 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Heart } from "lucide-react"
 import "../styles/animations.css"
-import { Chat } from "./Chat"
 
 const RomanticMain: React.FC = () => {
   const [hearts, setHearts] = useState<{ id: number; style: React.CSSProperties }[]>([])
@@ -51,7 +50,6 @@ const RomanticMain: React.FC = () => {
             <span className="text-2xl font-semibold text-gray-700 float">Amor Eterno Hacia Sheila</span>
             <Heart className="h-8 w-8 text-red-500 ml-3 pulse" />
           </div>
-          <Chat />
           {/* <p className="text-center text-gray-600 italic mb-6 text-lg transform hover:scale-105 transition-transform duration-300">
             "En cada latido de mi corazón, estás tú."
             </p> */}
