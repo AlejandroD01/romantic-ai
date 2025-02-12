@@ -37,28 +37,28 @@ const RomanticMain: React.FC = () => {
 
   return (
 
-    <body className="relative bg-gradient-to-r from-pink-100 to-purple-100 py-12 overflow-hidden">
+    <div className="relative bg-gradient-to-r from-pink-100 to-purple-100 min-h-screen w-full overflow-hidden">
       {hearts.map((heart) => (
         <div key={heart.id} className="heart-particle" style={heart.style}>
           ❤️
         </div>
       ))}
-      <div className="container mx-auto px-4">
+      <div className="absolute top-4 left-0 w-full container mx-auto px-4">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex items-center">
             <Heart className="h-8 w-8 text-red-500 mr-3 pulse" />
             <span className="text-2xl font-semibold text-gray-700 float">Amor Eterno Hacia Sheila</span>
             <Heart className="h-8 w-8 text-red-500 ml-3 pulse" />
           </div>
-          {/* <p className="text-center text-gray-600 italic mb-6 text-lg transform hover:scale-105 transition-transform duration-300">
-            "En cada latido de mi corazón, estás tú."
-            </p> */}
+          <p className="text-center text-gray-600 italic mb-6 text-lg transform hover:scale-105 transition-transform duration-300">
+          💖 Eres mi persona favorita 💖
+          </p>
         </div>
       </div>
-      <div className=" mt-52 text-center text-sm text-gray-500 rotate">
+      <div className="fixed bottom-0 left-0 w-full text-center text-sm text-gray-500 rotate">
         © {new Date().getFullYear()} Creado con 💖 para ti
       </div>
-    </body>
+    </div>
 
   )
 }
