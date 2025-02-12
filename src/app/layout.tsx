@@ -3,7 +3,7 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Create Next App",
+  title: "IA Romántica",
   description: "Creado por AlejandroD",
 };
 
