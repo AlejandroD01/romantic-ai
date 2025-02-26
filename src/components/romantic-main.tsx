@@ -1,12 +1,17 @@
-"use client"
+// components/RomanticMain.tsx
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Heart } from "lucide-react"
-import "../styles/animations.css"
+"use client";
 
-const RomanticMain: React.FC = () => {
-  const [hearts, setHearts] = useState<{ id: number; style: React.CSSProperties }[]>([])
+import React, { useState, useEffect } from "react";
+import { Heart } from "lucide-react";
+import "../styles/animations.css";
+
+interface RomanticMainProps {
+  children: React.ReactNode;
+}
+
+const RomanticMain: React.FC<RomanticMainProps> = ({ children }) => {
+  const [hearts, setHearts] = useState<{ id: number; style: React.CSSProperties }[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -15,53 +20,61 @@ const RomanticMain: React.FC = () => {
         {
           id: Date.now(),
           style: {
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            fontSize: `${Math.random() * 20 + 10}px`,
-            color: `hsl(${Math.random() * 60 + 330}, 100%, 70%)`,
-          },
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        fontSize: `${Math.random() * 20 + 10}px`,
+        color: `hsl(${Math.random() * 60 + 330}, 100%, 70%)`,
+        position: "absolute",
+        animation: "floatUp 3s linear",
+          } as const,
         },
-      ])
-    }, 300)
+      ]);
+    }, 300);
 
-    return () => clearInterval(interval)
-  }, [])
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setHearts((prevHearts) => prevHearts.slice(1))
-    }, 3000)
+    const interval = setInterval(() => {
+      setHearts((prevHearts) => prevHearts.slice(1));
+    }, 3000);
 
-    return () => clearTimeout(timeout)
-  }, []) // Removed unnecessary dependency: [hearts]
+    return () => clearInterval(interval);
+  }, [hearts]);
 
   return (
-
-    <div className="relative bg-gradient-to-r from-pink-100 to-purple-100 min-h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-r from-pink-100 to-purple-100">
       {hearts.map((heart) => (
         <div key={heart.id} className="heart-particle" style={heart.style}>
           ❤️
         </div>
       ))}
-      <div className="absolute top-4 left-0 w-full container mx-auto px-4">
+
+      {/* Encabezado fijo */}
+      <div className="fixed top-4 left-0 w-full px-4">
         <div className="flex flex-col items-center justify-center">
           <div className="mb-6 flex items-center">
             <Heart className="h-8 w-8 text-red-500 mr-3 pulse" />
-            <span className="text-2xl font-semibold text-gray-700 float">Amor Eterno Hacia Sheila</span>
+            <span className="text-2xl font-semibold text-gray-700">
+              Amor Eterno Hacia Sheila
+            </span>
             <Heart className="h-8 w-8 text-red-500 ml-3 pulse" />
           </div>
           <p className="text-center text-gray-600 italic mb-6 text-lg transform hover:scale-105 transition-transform duration-300">
-          💖 Eres mi persona favorita 💖
+            💖 Eres mi persona favorita 💖
           </p>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 w-full text-center text-sm text-gray-500 rotate">
+
+      {/* Contenido principal (Chat) */}
+      <div className="flex items-center justify-center min-h-screen px-4">{children}</div>
+
+      {/* Pie de página fijo */}
+      <div className="fixed bottom-0 left-0 w-full text-center text-sm text-gray-500 bg-white bg-opacity-50 py-2">
         © {new Date().getFullYear()} Creado con 💖 para ti
       </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default RomanticMain
-
+export default RomanticMain;

@@ -1,12 +1,10 @@
-import { Chat } from "@/components/Chat";
 import RomanticMain from "@/components/romantic-main";
+import Chat from "@/components/Chat";
 
-export default async function Home() {
-
+export default function Home() {
   return (
-    <>
-    <RomanticMain />
-    <Chat />  
-    </>
+    <RomanticMain>
+      <Chat />
+    </RomanticMain>
   );
 }
